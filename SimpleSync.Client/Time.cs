@@ -21,6 +21,7 @@ namespace SimpleSync.Client
         /// </summary>
         private int minutes = 0;
 
+        private Boolean doTimeSync = true;
         #endregion
 
         #region Constructor
@@ -34,13 +35,21 @@ namespace SimpleSync.Client
 
         #endregion
 
+        [EventHandler("simplesync:toggleTimeSync")]
+        public void toggleTimeSync(Boolean ttoggle)
+        {
+            doTimeSync = ttoggle;
+        }
         #region Tick
 
         [Tick]
         public async Task UpdateTime()
         {
-            // Just set the override time
-            API.NetworkOverrideClockTime(hours, minutes, 0);
+            if (doTimeSync)
+            {
+                // Just set the override time
+                API.NetworkOverrideClockTime(hours, minutes, 0);
+            }
         }
 
         #endregion
