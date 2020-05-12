@@ -35,7 +35,7 @@ namespace SimpleSync.Client
         [EventHandler("simplesync:setWeather")]
         public async void SetWeather(string from, string to, int duration)
         {
-            if (doWeatherSync)
+            if (doWeatherSync == true)
             {
                 // Log what we are going to do
                 Logging.Log($"Started weather switch from {from} to {to} ({duration}s)");
